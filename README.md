@@ -31,10 +31,10 @@ THEN I am again presented with current and future conditions for that city
 
 ## Screenshot
 
-
+/Users/adam/Bootcamp/Challenges/Challenge-6/Weather-App/Assets/Images/weather app.png
 
 ## Deployment Link
-https://warrenadam.github.io/Work-Day-Scheduler/
+https://warrenadam.github.io/Weather-App/
 
-## Ticket Review
-https://watch.screencastify.com/v/uMDNGWHupuUYBFTENRWQ
+
+
