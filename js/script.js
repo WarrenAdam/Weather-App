@@ -25,3 +25,54 @@ const isInList = (currentId = "") => {
     }
 }
 
+const populatePreviouslySearched = () => {
+    let prevCitiesArr = getCitiesFromLocalStorage();
+    for (i in prevCitiesArr) {
+
+        const currentCityObj = {
+        "cityLat" : prevCitiesArr[i].cityLat,
+        "cityLon" : prevCitiesArr[i].cityLon,
+        "cityName" : prevCitiesArr[i].cityName,
+        "cityCountry" : prevCitiesArr[i].cityCountry,
+        "cityId" : prevCitiesArr[i].cityId 
+        };
+    
+        addToPreviouslySearched(currentCityObj);
+    }
+}
+
+const clearPreviouslySearched = () => {
+    window.localStorage.setItem("prevCities", "[]");
+    $("#previous-searches").text("");
+}
+
+const addToPreviouslySearched = currentCityObj => {
+    
+    const cityLon = currentCityObj.cityLon;
+    const cityLat = currentCityObj.cityLat;
+    const cityName = currentCityObj.cityName;
+    const cityCountry = currentCityObj.cityCountry;
+    const cityId = currentCityObj.cityId;
+    
+    if(isInList(cityId)){
+        $(`[data-city-id="${cityId}"]`).remove();
+    }
+
+    prevSearchDiv.prepend($(`<span>${cityName}, ${cityCountry}</span>`)
+    .attr("data-city-lon", `${cityLon}`)
+    .attr("data-city-lat", `${cityLat}`)
+    .attr("data-city-name", `${cityName}`)
+    .attr("data-city-country", `${cityCountry}`)
+    .attr("data-city-id", `${cityId}`)
+    .attr("class", "prev-searched")
+    .on("click", loadNewData));
+}
+
+const addToLocalStorage = cityToAdd => {
+
+    let prevCitiesArr = getCitiesFromLocalStorage();
+    prevCitiesArr.push(cityToAdd);
+    prevCitiesStr = JSON.stringify(prevCitiesArr);
+    window.localStorage.setItem("prevCities", prevCitiesStr);
+}
+
