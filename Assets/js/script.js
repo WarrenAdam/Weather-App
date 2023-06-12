@@ -166,10 +166,10 @@ const searchCity = () => {
         }
 }     
 
-// returns string reprsenting the month from interger
-const intToMonth = intMonth => {
+// returns string reprenting the month from interger
+const intToMonth = monthAsInt => {
     let month = "";
-    switch(intMonth){
+    switch(monthAsInt){
         case 0:
             month  = "January";
             break;
@@ -209,9 +209,9 @@ const intToMonth = intMonth => {
     return month ;
 }
 // returns string reprenting the day from interger
-const intToDay = intDay => {
+const intToDay = dayAsInt => {
     let day = "Weather";
-    switch(intDay){
+    switch(dayAsInt){
         case 0:
             day = "Sunday";
             break;
@@ -237,18 +237,18 @@ const intToDay = intDay => {
 }
 
 // updates 5 day forecast cards with data
-const updateFiveDay = dataDays => {
+const updateFiveDay = daysData => {
     for (let i = 0; i < 5; i++){
       
         const currentDiv = $(`div[data-fiveday="${i}"]`)[0];
 
-        const currentMax = Math.round(kevlinToCelsius(dataDays[i].temp.max));
-        const currentMin = Math.round(kevlinToCelsius(dataDays[i].temp.min));
-        const currentWind = dataDays[i].wind_speed;
-        const currentHumidity = dataDays[i].humidity;
-        const currentIcon = dataDays[i].weather[0].icon;
+        const currentMax = Math.round(kevlinToCelsius(daysData[i].temp.max));
+        const currentMin = Math.round(kevlinToCelsius(daysData[i].temp.min));
+        const currentWind = daysData[i].wind_speed;
+        const currentHumidity = daysData[i].humidity;
+        const currentIcon = daysData[i].weather[0].icon;
         const currentIconSrc = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
-        const date = new Date(dataDays[i].dt * 1000);
+        const date = new Date(daysData[i].dt * 1000);
         const day = intToDay(date.getDay())
 
         $(currentDiv).children(".max")[0].textContent = `Max: ${currentMax}°C`
